@@ -10,7 +10,7 @@ export const useGetPokemon = () => {
 
         // const evolution = await axios.get(specie.data.evolution_chain.url);
         const service = new PokemonService(axios);
-        return service.getByName(name);
+        return service.getAllEvolutionsByName(name);
     }, false);
 
     return {

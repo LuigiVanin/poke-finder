@@ -1,6 +1,6 @@
 @import "./theme";
 
-@mixin font($font-name: $main-font) {
+@mixin font($font-name: $title-font) {
     font-family: $font-name;
 }
 

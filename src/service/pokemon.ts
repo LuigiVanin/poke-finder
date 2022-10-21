@@ -1,25 +1,17 @@
 import type { Axios } from "axios";
 import axios from "axios";
-
-interface Specie {
-    evolution_chain: {
-        url: string;
-    };
-}
-
-interface Chain {
-    specie: string;
-    evolves_to: Chain[];
-}
+import { Chain, Pokemon, Specie } from "../types/pokemons.types";
 
 export class PokemonService {
     constructor(private api: Axios) {}
 
-    async getByName(name: string) {
+    async getAllEvolutionsByName(name: string) {
         const specie = await this.getSpecieByName(name);
         const chain = await this.getEvolutionChain(specie.evolution_chain.url);
-        // return await this.getFromEvolutionChain(chain);
-        return chain;
+        const allEvolutions: string[] = this.getEvolutionsFromChain(chain);
+        // console.log("aqui 2:", allEvolutions);
+
+        return await this.getManyByName(allEvolutions);
     }
 
     async getSpecieByName(name: string) {
@@ -36,5 +28,29 @@ export class PokemonService {
         return response.data.chain;
     }
 
-    async getFromEvolutionChain(chain: Chain, acc = []) {}
+    getEvolutionsFromChain(chain: Chain, acc: string[] = []) {
+        // console.log("aqui: ", chain);
+        acc.push(chain.species.name);
+        const next = chain.evolves_to;
+        for (const evolve of next) {
+            // console.log("iteration:", evolve.species.name);
+            acc = this.getEvolutionsFromChain(evolve, acc);
+        }
+        return acc;
+    }
+
+    async getByName(name: string) {
+        const response = await axios.get<Pokemon>(
+            `https://pokeapi.co/api/v2/pokemon/${name}`
+        );
+        return response.data;
+    }
+
+    async getManyByName(names: string[]) {
+        const response = [];
+        for (const name of names) {
+            response.push(await this.getByName(name));
+        }
+        return response;
+    }
 }

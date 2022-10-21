@@ -1,20 +1,19 @@
-import { onMounted, ref } from "vue";
+import { onMounted, Ref, ref } from "vue";
 
 export const useAsync = <T = any>(
     handler: (...args: any[]) => Promise<T>,
     asap: boolean = true
 ) => {
     const loading = ref(false);
-    const data = ref<any>(null);
+    const data = ref<T | null>(null) as Ref<T>;
     const error = ref<any>(null);
 
-    const action = async (...args: any[]) => {
+    const action = async (...args: any[]): Promise<void> => {
         loading.value = true;
         error.value = null;
         try {
             const result = await handler(...args);
             data.value = result;
-            console.log(data.value);
         } catch (err) {
             console.log(err);
             error.value = err;
