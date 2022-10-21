@@ -1,0 +1,38 @@
+@import "./theme";
+@import "./mixins";
+:root {
+    // font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    // font-size: 16px;
+    // line-height: 24px;
+    // font-weight: 1000;
+
+    // color-scheme: light dark;
+    // color: rgba(0, 0, 0, 0.87);
+    // background-color: #ffffff;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include font();
+
+    min-height: 100vh;
+    width: 100%;
+    background-color: $background;
+}
+
+.Vue-Toastification__toast--success {
+    background-color: $main-green !important;
+}
+
+#app {
+    width: 100%;
+}

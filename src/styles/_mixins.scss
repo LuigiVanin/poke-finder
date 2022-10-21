@@ -1,0 +1,107 @@
+@import "./theme";
+
+@mixin font($font-name: $main-font) {
+    font-family: $font-name;
+}
+
+@mixin input-default() {
+    background: $input-color;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px -2px #00000065;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0px 0px 14px -1px #0000008e;
+    }
+}
+
+@mixin text-area-placeholder {
+    textarea::-webkit-input-placeholder {
+        font-size: 19px;
+        @include font();
+    }
+
+    textarea:-moz-placeholder {
+        /* Firefox 18- */
+        font-size: 21px;
+        @include font();
+    }
+
+    textarea::-moz-placeholder {
+        /* Firefox 19+ */
+        font-size: 21px;
+        @include font();
+    }
+
+    textarea:-ms-input-placeholder {
+        font-size: 21px;
+        @include font();
+    }
+
+    textarea::placeholder {
+        font-size: 21px;
+        @include font();
+    }
+}
+
+@mixin title-font() {
+    @include font($title-font);
+}
+
+@mixin reset() {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+@mixin flex($align: center, $justify: center, $direction: row, $gap: 5px) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+@mixin flex-center($direction: row, $gap: 5px) {
+    @include flex();
+    gap: $gap;
+    flex-direction: $direction;
+}
+
+@mixin spinner($size: 25px, $color: white, $speed: 1s) {
+    span {
+        width: $size;
+        height: $size;
+        border: solid 5px transparent;
+        border-left-color: $color;
+        border-bottom-color: $color;
+        border-radius: 50%;
+        animation: $speed linear infinite spin;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+@mixin full-screen {
+    width: 100%;
+    min-height: 100vh;
+}
+
+@mixin item-react(
+    $item-name,
+    $min-screen: 1080px,
+    $max-width: calc(0.8 * 1080px)
+) {
+    @media (min-width: $min-screen) {
+        #{$item-name} {
+            width: $max-width;
+        }
+    }
+}
