@@ -9,7 +9,6 @@ export class PokemonService {
         const specie = await this.getSpecieByName(name);
         const chain = await this.getEvolutionChain(specie.evolution_chain.url);
         const allEvolutions: string[] = this.getEvolutionsFromChain(chain);
-        // console.log("aqui 2:", allEvolutions);
 
         return await this.getManyByName(allEvolutions);
     }
@@ -29,11 +28,9 @@ export class PokemonService {
     }
 
     getEvolutionsFromChain(chain: Chain, acc: string[] = []) {
-        // console.log("aqui: ", chain);
         acc.push(chain.species.name);
         const next = chain.evolves_to;
         for (const evolve of next) {
-            // console.log("iteration:", evolve.species.name);
             acc = this.getEvolutionsFromChain(evolve, acc);
         }
         return acc;

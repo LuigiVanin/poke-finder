@@ -18,10 +18,7 @@ const props = defineProps<SelectorProps>();
                 :class="idx == selectedIdx ? 'selected' : ''"
                 @click="() => selectAction(idx)"
             >
-                <!-- {{ pokemon.name }} - {{ idx }} -->
                 <img :src="pokemon.sprites.front_default" alt="teste" />
-
-                <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
             </div>
             <ion-icon
                 v-show="idx < evolutions.length - 1"
@@ -38,10 +35,8 @@ const props = defineProps<SelectorProps>();
 section {
     width: 100%;
     height: 75px;
-    /* background: yellow; */
 
     @include flex(center, center, row, 10px);
-    /* padding-inline: 20%; */
     margin-bottom: 20px;
 
     .pokemon {

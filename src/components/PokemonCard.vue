@@ -20,7 +20,6 @@ const toggleStats = ref(false);
 
 const change = (type: "normal" | "shiny") => {
     pokemonColor.value = type;
-    console.log(pokemonColor.value);
 };
 </script>
 
@@ -85,7 +84,6 @@ header {
         text-transform: capitalize;
         font-size: 1.5rem;
         font-weight: 600;
-        /* margin-bottom: 10px; */
 
         & > span {
             color: $soft-gray;

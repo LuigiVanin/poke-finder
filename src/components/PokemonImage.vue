@@ -40,7 +40,6 @@ const defineColor = (sprites: Sprites, color: "normal" | "shiny") => {
         position: absolute;
         height: 150px;
         width: 150px;
-        /* inset: 0; */
         border-radius: 50%;
         background: $main-green;
         z-index: 0;

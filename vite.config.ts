@@ -17,5 +17,4 @@ export default defineConfig({
     //         external: "/src/main.js",
     //     },
     // },
-    base: "/dist/",
 });

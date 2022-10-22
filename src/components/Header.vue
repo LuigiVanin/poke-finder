@@ -23,7 +23,6 @@ header {
     height: 55px;
     background: white;
     box-shadow: 0 -1px 6px 0px rgba(0, 0, 0, 0.205);
-    /* padding-inline: 25%; */
     .wrapper {
         @include flex($justify: space-between);
         padding-inline: 15px;

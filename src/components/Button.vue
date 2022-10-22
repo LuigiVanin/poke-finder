@@ -31,14 +31,12 @@ button {
     padding-inline: 15px;
     font-size: 19px;
     @include input-default();
-    /* height: 100%; */
 
     background: $soft-green;
     color: $dark-gray;
 
     &:hover,
     &.selected {
-        /* border-radius: 27px; */
         background: $main-green;
         color: $background;
     }
@@ -50,12 +48,10 @@ button {
         color: $dark-gray;
     }
 
-    /* color: $background; */
     font-weight: 600;
     cursor: pointer;
 
     ion-icon {
-        /* color: black; */
         font-size: 23px;
         --ionicon-stroke-width: 46px;
     }
@@ -66,7 +62,6 @@ button {
         padding-inline: 9px;
         font-size: 17px;
         ion-icon {
-            /* color: black; */
             font-size: 19px;
             --ionicon-stroke-width: 46px;
         }
