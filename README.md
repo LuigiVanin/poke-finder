@@ -15,6 +15,12 @@ Para rodar em desenvolvimento basta baixar os arquivos do projeto via zip ou `gi
 > npm run dev
 ```
 
+### Preview 👓
+
+<h1 align="center">
+<img src="./images/poke-finder-preview.gif" width="475px"/>
+</h1>
+
 ---
 
 ### Ferramentas Utilizadas 🛠️
