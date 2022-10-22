@@ -35,13 +35,16 @@ export interface Stats {
 }
 
 export interface Types {
-    name: string;
+    type: {
+        name: string;
+    };
 }
 
 export interface Pokemon {
     name: string;
     weight: number;
+    id: number;
     sprites: Sprites;
-    stats: [Stats, 6];
+    stats: Stats[];
     types: Types[];
 }

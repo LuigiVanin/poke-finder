@@ -1,0 +1,73 @@
+@import "./mixins";
+@import "./theme";
+
+main {
+    @include full-screen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 90%;
+    padding-block: 70px;
+    margin-inline: auto;
+    gap: 20px;
+    .container {
+        width: 100%;
+        /* background: red; */
+        /* @include flex(center, start, column); */
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1.title {
+        @include font;
+        font-weight: 700;
+        text-align: center;
+        font-size: 26px;
+        color: $main-green;
+        margin-block: 25px;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .wrapper {
+        margin-top: 15%;
+
+        & > h1,
+        & > ion-icon {
+            text-align: center;
+            font-size: 26px;
+            color: $soft-gray;
+            @include flex-center;
+            margin-top: 10px;
+            margin-inline: auto;
+        }
+    }
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    @include input-default();
+    input {
+        @include font();
+        color: $dark-gray;
+        width: 100%;
+        background: transparent;
+        flex: 1;
+        outline: none;
+        border: none;
+        color: rgb(17, 17, 17);
+        padding-inline: 15px;
+        padding-block: 12px;
+        font-size: 19px;
+        line-height: 0px;
+    }
+}

@@ -1,18 +1,26 @@
 <script lang="ts" setup>
+import { StyleValue } from "vue";
+
 interface ButtonProps {
     action?: (event: Event) => void;
+    style?: StyleValue | undefined;
+    selected?: "selected" | "disable" | undefined;
 }
 
 const props = defineProps<ButtonProps>();
 </script>
 
 <template>
-    <button @click="props.action && props.action($event)">
+    <button
+        @click="props.action && props.action($event)"
+        :style="style"
+        :class="selected"
+    >
         <slot> Clique Aqui! </slot>
     </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../styles/mixins";
 @import "../styles/theme";
 
@@ -23,14 +31,23 @@ button {
     padding-inline: 15px;
     font-size: 19px;
     @include input-default();
+    /* height: 100%; */
 
     background: $soft-green;
     color: $dark-gray;
 
-    &:hover {
+    &:hover,
+    &.selected {
         /* border-radius: 27px; */
         background: $main-green;
         color: $background;
+    }
+
+    &.disable,
+    &.disable:hover {
+        box-shadow: 0 0 0 0 black;
+        background: $divisor-color;
+        color: $dark-gray;
     }
 
     /* color: $background; */
@@ -41,6 +58,18 @@ button {
         /* color: black; */
         font-size: 23px;
         --ionicon-stroke-width: 46px;
+    }
+}
+
+@media (max-width: 380px) {
+    button {
+        padding-inline: 9px;
+        font-size: 17px;
+        ion-icon {
+            /* color: black; */
+            font-size: 19px;
+            --ionicon-stroke-width: 46px;
+        }
     }
 }
 </style>

@@ -3,7 +3,7 @@ import { Pokemon } from "../types/pokemons.types";
 
 interface SelectorProps {
     evolutions: Pokemon[];
-    selectedIdx?: number;
+    selectedIdx: number;
     selectAction: (pokemonIdx: number) => void;
 }
 
@@ -12,17 +12,22 @@ const props = defineProps<SelectorProps>();
 
 <template>
     <section class="selection">
-        <div
-            v-for="(pokemon, idx) in evolutions"
-            class="pokemon"
-            :class="idx == selectedIdx ? 'selected' : ''"
-            @click="() => selectAction(idx)"
-        >
-            <!-- {{ pokemon.name }} - {{ idx }} -->
-            <img :src="pokemon.sprites.front_default" alt="teste" />
+        <template v-for="(pokemon, idx) in evolutions">
+            <div
+                class="pokemon"
+                :class="idx == selectedIdx ? 'selected' : ''"
+                @click="() => selectAction(idx)"
+            >
+                <!-- {{ pokemon.name }} - {{ idx }} -->
+                <img :src="pokemon.sprites.front_default" alt="teste" />
 
-            <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
-        </div>
+                <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
+            </div>
+            <ion-icon
+                v-show="idx < evolutions.length - 1"
+                name="chevron-forward-outline"
+            ></ion-icon>
+        </template>
     </section>
 </template>
 
@@ -35,8 +40,9 @@ section {
     height: 75px;
     /* background: yellow; */
 
-    @include flex(center, space-around, row);
-    padding-inline: 20%;
+    @include flex(center, center, row, 10px);
+    /* padding-inline: 20%; */
+    margin-bottom: 20px;
 
     .pokemon {
         height: 75px;
@@ -54,6 +60,17 @@ section {
         img {
             height: 65px;
         }
+    }
+
+    ion-icon {
+        font-size: 29px;
+        color: $main-green;
+    }
+}
+
+@media (max-width: 380px) {
+    section {
+        gap: 5px;
     }
 }
 </style>
