@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
 import { Stats } from "../types/pokemons.types";
 
 interface Props {
