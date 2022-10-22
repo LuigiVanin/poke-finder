@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 t.json
+
+# Cypress
+
+1-getting-started/
+2-advanced-examples/
