@@ -1,10 +1,10 @@
+<script setup lang="ts"></script>
+
 <template>
     <div class="loader">
         <span> </span>
     </div>
 </template>
-
-<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 @import "../styles/mixins";

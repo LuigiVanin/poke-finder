@@ -1,3 +1,5 @@
+<script lang="ts" setup></script>
+
 <template>
     <header>
         <div class="wrapper">
@@ -7,8 +9,6 @@
         </div>
     </header>
 </template>
-
-<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
 @import "../styles/theme";
