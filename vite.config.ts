@@ -12,9 +12,10 @@ export default defineConfig({
             },
         }),
     ],
-    build: {
-        rollupOptions: {
-            external: "/src/main.js",
-        },
-    },
+    // build: {
+    //     rollupOptions: {
+    //         external: "/src/main.js",
+    //     },
+    // },
+    base: "/dist/",
 });
