@@ -37,7 +37,7 @@ const searchRandomPokemon = async () => {
 
 const onSubmit = async (event: Event) => {
     event.preventDefault();
-    searchPokemon(pokemonName.value);
+    searchPokemon(pokemonName.value.toLowerCase());
 };
 </script>
 
