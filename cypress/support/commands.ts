@@ -53,9 +53,11 @@ Cypress.Commands.add("getAndType", (name, text) => {
     return cy.get(String(name)).type(text);
 });
 
-// Cypress.Commands.add("getAndClick")
+Cypress.Commands.add("getAndClick", (element) => {
+    cy.get(element).click();
+});
 
-// Cypress.Commands.add("searchPokemon", (pokemon: string) => {
-//     cy.getAndType("form input", pokemon);
-//     cy.get;
-// });
+Cypress.Commands.add("searchPokemon", (pokemon: string) => {
+    cy.getAndType("form input", pokemon);
+    cy.getAndClick("form button");
+});
