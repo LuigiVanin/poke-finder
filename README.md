@@ -27,9 +27,9 @@ Para rodar em desenvolvimento basta baixar os arquivos do projeto via zip ou `gi
 
 ### Preview 👓
 
-<h1 align="center">
+<p align="center">
 <img src="./images/poke-finder-preview.gif" width="475px"/>
-</h1>
+</p>
 
 ---
 
@@ -39,6 +39,7 @@ Para rodar em desenvolvimento basta baixar os arquivos do projeto via zip ou `gi
     <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
     <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D"/>
     <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" />
+    <img src="https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e" />
     <img src="https://img.shields.io/badge/Git-E34F26?style=for-the-badge&logo=git&logoColor=white" />
     <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white">
 </p>
