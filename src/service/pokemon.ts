@@ -3,7 +3,7 @@ import axios from "axios";
 import { Chain, Pokemon, Specie } from "../types/pokemons.types";
 
 export class PokemonService {
-    constructor(private api: Axios) {}
+    constructor(private api?: Axios) {}
 
     async getAllEvolutionsByName(name: string) {
         const specie = await this.getSpecieByName(name);
@@ -14,16 +14,14 @@ export class PokemonService {
     }
 
     async getSpecieByName(name: string) {
-        const response = await this.api.get<Specie>(
+        const response = await axios.get<Specie>(
             `https://pokeapi.co/api/v2/pokemon-species/${name}`
         );
         return response.data;
     }
 
     async getEvolutionChain(evolutionChainUrl: string) {
-        const response = await this.api.get<{ chain: Chain }>(
-            evolutionChainUrl
-        );
+        const response = await axios.get<{ chain: Chain }>(evolutionChainUrl);
         return response.data.chain;
     }
 

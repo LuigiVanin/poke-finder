@@ -40,13 +40,37 @@ describe("Testing the integration of the PokeApi and my application", () => {
         );
         cy.searchPokemon(pokemon);
         cy.wait(["@allPokemons", "@allPokemons", "@allPokemons"]).then(
-            (response) => {
-                cy.log(response);
-                response.forEach(({ response }, index) => {
+            (responses) => {
+                cy.log(responses);
+                responses.forEach(({ response }) => {
                     expect(pokemons).to.be.include(response.body.name);
                     expect(response.statusCode).to.be.equal(200);
                 });
             }
         );
     });
+
+    it("Testing page load after pokemon search", () => {
+        cy.intercept("GET", `https://pokeapi.co/api/v2/pokemon/**`).as(
+            "allPokemons"
+        );
+        cy.searchPokemon(pokemon);
+        cy.wait(["@allPokemons", "@allPokemons", "@allPokemons"]).then(
+            (responses) => {
+                responses.forEach((_) => {
+                    cy.get(".card").contains(pokemon).should("exist");
+                });
+            }
+        );
+    });
+
+    // it("Searching for a pokemon that dont exist", () => {
+    //     cy.intercept("GET", `https://pokeapi.co/api/v2/pokemon-species/**`).as(
+    //         "errorRequest"
+    //     );
+
+    //     cy.wait("@errorRequest").then(({ response }) => {
+    //         expect(response.statusCode).to.equal(404);
+    //     });
+    // });
 });

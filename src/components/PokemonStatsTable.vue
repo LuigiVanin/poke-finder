@@ -81,7 +81,6 @@ const defineIcon = (name: string) => {
 
             .right,
             .left {
-                /* flex: 1; */
                 @include flex(center, start, row, 2px);
                 text-transform: capitalize;
                 height: 100%;

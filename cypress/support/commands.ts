@@ -1,30 +1,8 @@
 /// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
+
+import { Interception } from "cypress/types/net-stubbing";
+import { getEvolutions } from "../utils/utils";
+
 export {};
 
 declare global {
@@ -40,6 +18,18 @@ declare global {
             getAndClick: (element: string) => Chainable<void>;
 
             searchPokemon: (pokemonName: string) => Chainable<void>;
+
+            randomPokemon: () => Chainable<void>;
+
+            afterPokemonAction: (
+                pokemonToSearch: string,
+                evolutions: string[],
+                afterAction: (responses: Interception[]) => void
+            ) => void;
+
+            afterSearchPikachu: (
+                afterAction: (responses: Interception[]) => void
+            ) => void;
         }
     }
 }
@@ -60,4 +50,37 @@ Cypress.Commands.add("getAndClick", (element) => {
 Cypress.Commands.add("searchPokemon", (pokemon: string) => {
     cy.getAndType("form input", pokemon);
     cy.getAndClick("form button");
+});
+
+Cypress.Commands.add("randomPokemon", () => {
+    cy.getAndClick(".btn");
+});
+
+Cypress.Commands.add(
+    "afterPokemonAction",
+    (
+        pokemonToSearch: string,
+        evolutions: string[],
+        afterAction: (responses: Interception[]) => void
+    ) => {
+        cy.intercept(`https://pokeapi.co/api/v2/pokemon/**`).as(
+            "pokemonRequest"
+        );
+        const pokemonsRequestName: string[] = [];
+        evolutions.forEach(() => {
+            pokemonsRequestName.push(`@pokemonRequest`);
+        });
+        cy.searchPokemon(pokemonToSearch);
+        cy.wait(pokemonsRequestName).then((responses) => {
+            afterAction(responses);
+        });
+    }
+);
+
+Cypress.Commands.add("afterSearchPikachu", (afterAction) => {
+    cy.afterPokemonAction(
+        "pikachu",
+        ["pichu", "pikachu", "raichu"],
+        afterAction
+    );
 });
