@@ -42,10 +42,7 @@ export class PokemonService {
     }
 
     async getManyByName(names: string[]) {
-        const response = [];
-        for (const name of names) {
-            response.push(await this.getByName(name));
-        }
-        return response;
+        const responses = await Promise.all(names.map(this.getByName));
+        return responses;
     }
 }
