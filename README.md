@@ -31,6 +31,30 @@ Para rodar em desenvolvimento basta baixar os arquivos do projeto via zip ou `gi
 <img src="./images/poke-finder-preview.gif" width="475px"/>
 </p>
 
+### Como Testar 🧪
+
+Os testes dessa aplicação foram feitos utilizando Cypress, portanto são testes e2e.
+Para rodar os testes é necessário rodar em paralelo com o cypress uma versão de desenvolvimento da aplicação em desenvolvimento ou produção em outra porta, por tanto, antes de rodar o cypress precisamos rodar o seguinte comando:
+
+```bash
+> npm run dev
+# ou buildar e servir o website
+```
+
+Agora em outro terminal usamos o seguinte código para rodar os teste via terminal:
+
+```bash
+> npx cypress run
+```
+
+Também há a possibilidade de rodar na interface gráfica do Cypress, basta utilizar o seguinte comando:
+
+```bash
+> npx cypress open
+```
+
+> **OBS.:** _Talvez Apenas utilizar os comandos acima não seja o suficiente, neste caso, alguns prerequisitos para o cypress estejam faltando. Caso esteja no Linux, vale ler a [Página](https://docs.cypress.io/guides/getting-started/installing-cypress#Linux-Prerequisites)_.
+
 ---
 
 ### Ferramentas Utilizadas 🛠️
